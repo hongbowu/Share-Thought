@@ -67,9 +67,10 @@ module.exports = {
     },
     async addUserFriend(req, res) {
         try {
+            const { userId, friendId } = req.params;
           const user = await User.findOneAndUpdate(
-            { _id: req.params.userId },
-            { $addToSet: { friends: [{ friendId: req.params.friendId }] } },
+            { _id: userId },
+            { $addToSet: { friends: friendId } },
             { runValidators: true, new: true }
           )
     
